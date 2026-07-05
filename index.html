@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tender Taker — Post tenders. Apply with confidence. Verify everything.</title>
+<link href="logo(TT)bg.png" rel="icon">
+<link rel="stylesheet" href="style.css">
+<style>
+  .hero{ max-width:1200px; margin:0 auto; padding: 64px 28px 80px; display:grid; grid-template-columns: 1.15fr 1fr; gap:56px; align-items:start; }
+  .hero-left .eyebrow{ margin-bottom:14px; }
+  .hero-left h1{ font-size: 44px; line-height:1.08; margin-bottom:18px; }
+  .hero-left h1 em{ font-style:italic; color: var(--brass-dark); }
+  .hero-left p.lede{ font-size:16px; color: var(--ink-soft); max-width:480px; margin-bottom:34px; }
+  .steps{ display:flex; flex-direction:column; gap:20px; max-width: 480px; }
+  .step{ display:flex; gap:16px; align-items:flex-start; }
+  .step-num{ font-family: var(--font-mono); font-size:12px; color: var(--brass-dark); border:1px solid var(--brass); border-radius:50%; width:30px; height:30px; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+  .step h4{ font-size:15px; margin-bottom:3px; }
+  .step p{ font-size:13px; color: var(--slate); margin:0; }
+
+  .auth-card{ padding: 30px 32px 32px; }
+  .role-pills{ display:flex; gap:8px; margin-bottom: 22px; }
+  .role-pill{
+    flex:1; text-align:center; padding: 12px 8px; border:1.5px solid var(--paper-line);
+    border-radius: var(--radius-sm); font-size:13px; font-weight:600; color: var(--slate);
+    background: var(--paper);
+  }
+  .role-pill .sub{ display:block; font-weight:400; font-size:11px; margin-top:2px; }
+  .role-pill.active{ border-color: var(--brass); background: var(--paper-raised); color: var(--ink); box-shadow: 0 0 0 1px var(--brass) inset; }
+  .tabs{ display:flex; border-bottom:1px solid var(--paper-line); margin-bottom:22px; }
+  .tab{ padding:10px 4px; margin-right:22px; font-size:14px; font-weight:600; color: var(--slate); border-bottom:2px solid transparent; background:none; border-top:none; border-left:none; border-right:none; }
+  .tab.active{ color: var(--ink); border-bottom-color: var(--brass); }
+  .demo-note{ font-size:11.5px; color: var(--slate); background: var(--paper); border:1px solid var(--paper-line); padding:10px 12px; border-radius: var(--radius-sm); margin-top:16px; }
+  .demo-note b{ color: var(--ink-soft); font-family: var(--font-mono); }
+  .err{ font-size:12.5px; color: var(--rejected); margin-top: -6px; margin-bottom:14px; display:none; }
+  footer.site{ text-align:center; padding: 24px 0 40px; font-size:11.5px; color: var(--slate); font-family: var(--font-mono); letter-spacing:.06em; text-transform:uppercase; }
+
+  @media (max-width: 900px){
+    .hero{ grid-template-columns: 1fr; padding-top: 40px; }
+    .hero-left h1{ font-size:32px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a href="index.html" class="brand">
+      <img class="brand-mark" src="logo(TT)bg.png" alt="Tender Taker logo">
+      <span class="brand-text">
+        <h1>Tender Taker</h1>
+        <span class="tagline">Gazette of open contracts</span>
+      </span>
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-left">
+    <span class="eyebrow">No middlemen, no guesswork</span>
+    <h1>Every tender, <em>tracked</em>.<br>Every bid, <em>verified</em>.</h1>
+    <p class="lede">Companies list tenders and see exactly who applied, what they're pitching, and whether their paperwork checks out. Corporates find open work and apply without chasing anyone by phone.</p>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div><h4>A company posts a tender</h4><p>Scope, budget and deadline — listed publicly in minutes.</p></div>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div><h4>Corporates apply with a pitch</h4><p>A written pitch plus supporting documents, attached to the application.</p></div>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div><h4>The company reviews and verifies</h4><p>Every applicant, every document, checked off before an award is made.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="card auth-card">
+      <div class="role-pills">
+        <button class="role-pill active" data-role="company" type="button">
+          Company <span class="sub">Post &amp; verify tenders</span>
+        </button>
+        <button class="role-pill" data-role="corporate" type="button">
+          Corporate <span class="sub">Find &amp; apply for work</span>
+        </button>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="login" type="button">Log in</button>
+        <button class="tab" data-tab="register" type="button">Register</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="loginForm">
+        <div class="field">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" required placeholder="you@company.com">
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" required placeholder="••••••••">
+        </div>
+        <p class="err" id="loginErr"></p>
+        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+      </form>
+
+      <!-- REGISTER FORM -->
+      <form id="registerForm" class="hidden">
+        <div class="field">
+          <label for="regName">Your name</label>
+          <input type="text" id="regName" required placeholder="Full name">
+        </div>
+        <div class="field" id="companyNameField">
+          <label for="regCompanyName">Company name</label>
+          <input type="text" id="regCompanyName" placeholder="e.g. Konkan Infra Pvt. Ltd.">
+        </div>
+        <div class="field">
+          <label for="regEmail">Email</label>
+          <input type="email" id="regEmail" required placeholder="you@company.com">
+        </div>
+        <div class="field">
+          <label for="regPassword">Password</label>
+          <input type="password" id="regPassword" required placeholder="At least 6 characters">
+        </div>
+        <p class="err" id="regErr"></p>
+        <button type="submit" class="btn btn-primary btn-block">Create account</button>
+      </form>
+
+      <div class="demo-note">
+        Try it instantly — Company: <b>company@demo.com</b> / <b>demo123</b> &nbsp;·&nbsp; Corporate: <b>bidder@demo.com</b> / <b>demo123</b>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">Tender Taker — a demo procurement workflow, data stays in your browser</footer>
+
+<script src="store.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>
