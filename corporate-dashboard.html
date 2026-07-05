@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corporate Portal — Tender Taker</title>
+<link href="assets/logo(TT)bg.png" rel="icon">
+
+<link rel="stylesheet" href="/style.css">
+<style>
+  .filter-row{ display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
+  .filter-row input, .filter-row select{ width:auto; }
+  .filter-row input{ flex:1; min-width:200px; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a href="index.html" class="brand">
+      <img class="brand-mark" src="logo(TT)bg.png" alt="Tender Taker logo">
+      <span class="brand-text"><h1>Tender Taker</h1><span class="tagline">Gazette of open contracts</span></span>
+    </a>
+    <div class="masthead-right">
+      <div class="who">
+        <div class="name" id="whoName">—</div>
+        <div class="role">Corporate Portal</div>
+      </div>
+      <button class="btn-ghost-light" id="logoutBtn">Log out</button>
+    </div>
+  </div>
+</header>
+
+<div class="app-shell">
+  <nav class="sidebar">
+    <div class="sidebar-label">Workspace</div>
+    <div class="nav-item active" data-section="browse">Browse tenders</div>
+    <div class="nav-item" data-section="myapps">My applications <span class="nav-count" id="appCount">0</span></div>
+  </nav>
+
+  <main class="main">
+
+    <!-- BROWSE -->
+    <section class="main-section" id="section-browse">
+      <div class="main-head"><div><span class="eyebrow">Open right now</span><h2>Browse tenders</h2></div></div>
+      <div class="filter-row">
+        <input type="text" id="searchInput" placeholder="Search by title or keyword…">
+        <select id="categoryFilter">
+          <option value="">All categories</option>
+          <option>Civil &amp; Infrastructure</option>
+          <option>Procurement &amp; Supply</option>
+          <option>IT &amp; Software Services</option>
+          <option>Consulting &amp; Advisory</option>
+          <option>Logistics &amp; Transport</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div id="browseList"></div>
+    </section>
+
+    <!-- MY APPLICATIONS -->
+    <section class="main-section hidden" id="section-myapps">
+      <div class="main-head"><div><span class="eyebrow">Track your submissions</span><h2>My applications</h2></div></div>
+      <div id="myAppsList"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- APPLY MODAL -->
+<div class="modal-overlay hidden" id="applyOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <span class="eyebrow" id="applyTenderRef"></span>
+        <h3 id="applyTenderTitle" style="font-size:19px;"></h3>
+      </div>
+      <button class="modal-close" data-close="applyOverlay">&times;</button>
+    </div>
+    <form id="applyForm">
+      <div class="field">
+        <label for="pitchInput">Your pitch</label>
+        <textarea id="pitchInput" required placeholder="Why should this company pick you? Mention relevant experience, capacity and timeline." style="min-height:130px;"></textarea>
+      </div>
+      <div class="field">
+        <label>Supporting documents</label>
+        <div class="file-drop" id="fileDropZone">Click to attach documents (registration, GST, past work, etc.)</div>
+        <input type="file" id="fileInput" multiple class="hidden">
+        <div class="file-list" id="fileList"></div>
+        <p class="hint">Files under 2MB are stored so the company can preview them; larger files are listed by name only.</p>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Submit application</button>
+    </form>
+  </div>
+</div>
+
+<!-- VIEW TENDER DETAIL (from my applications) -->
+<div class="modal-overlay hidden" id="detailOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <div><span class="eyebrow" id="detailRef"></span><h3 id="detailTitle" style="font-size:19px;"></h3></div>
+      <button class="modal-close" data-close="detailOverlay">&times;</button>
+    </div>
+    <div id="detailBody"></div>
+  </div>
+</div>
+
+<script src="/store.js"></script>
+<script src="/corporate.js"></script>
+</body>
+</html>
