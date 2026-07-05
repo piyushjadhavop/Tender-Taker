@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Company Portal — Tender Taker</title>
+<link href="assets/logo(TT)bg.png" rel="icon">
+
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a href="index.html" class="brand">
+      <img class="brand-mark" src="logo(TT)bg.png" alt="Tender Taker logo">
+      <span class="brand-text"><h1>Tender Taker</h1><span class="tagline">Gazette of open contracts</span></span>
+    </a>
+    <div class="masthead-right">
+      <div class="who">
+        <div class="name" id="whoName">—</div>
+        <div class="role">Company Portal</div>
+      </div>
+      <button class="btn-ghost-light" id="logoutBtn">Log out</button>
+    </div>
+  </div>
+</header>
+
+<div class="app-shell">
+  <nav class="sidebar">
+    <div class="sidebar-label">Workspace</div>
+    <div class="nav-item active" data-section="overview">Overview</div>
+    <div class="nav-item" data-section="post">Post a tender</div>
+    <div class="nav-item" data-section="tenders">My tenders <span class="nav-count" id="tenderCount">0</span></div>
+  </nav>
+
+  <main class="main">
+
+    <!-- OVERVIEW -->
+    <section class="main-section" id="section-overview">
+      <div class="main-head">
+        <div><span class="eyebrow">At a glance</span><h2>Overview</h2></div>
+      </div>
+      <div class="stat-grid">
+        <div class="card stat-card"><div class="n" id="statTotal">0</div><div class="l">Tenders posted</div></div>
+        <div class="card stat-card"><div class="n" id="statOpen">0</div><div class="l">Currently open</div></div>
+        <div class="card stat-card"><div class="n" id="statApps">0</div><div class="l">Applications received</div></div>
+        <div class="card stat-card"><div class="n" id="statVerified">0</div><div class="l">Verified &amp; approved</div></div>
+      </div>
+      <div class="card" style="padding:22px;">
+        <h3 style="font-size:16px;margin-bottom:14px;">Most recent applications</h3>
+        <div id="recentApps"><p class="hint">Nothing yet.</p></div>
+      </div>
+    </section>
+
+    <!-- POST TENDER -->
+    <section class="main-section hidden" id="section-post">
+      <div class="main-head"><div><span class="eyebrow">New listing</span><h2>Post a tender</h2></div></div>
+      <div class="card" style="padding:28px; max-width:640px;">
+        <form id="tenderForm">
+          <div class="field">
+            <label for="tTitle">Tender title</label>
+            <input type="text" id="tTitle" required placeholder="e.g. Construction of Rural Road — Roha to Nagothane">
+          </div>
+          <div class="field">
+            <label for="tCategory">Category</label>
+            <select id="tCategory" required>
+              <option value="">Select a category</option>
+              <option>Civil &amp; Infrastructure</option>
+              <option>Procurement &amp; Supply</option>
+              <option>IT &amp; Software Services</option>
+              <option>Consulting &amp; Advisory</option>
+              <option>Logistics &amp; Transport</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="tDesc">Scope of work</label>
+            <textarea id="tDesc" required placeholder="Describe the work, deliverables and any conditions bidders should know about."></textarea>
+          </div>
+          <div class="field">
+            <label for="tBudget">Estimated budget (₹)</label>
+            <input type="number" id="tBudget" required min="0" placeholder="e.g. 4200000">
+          </div>
+          <div class="field">
+            <label for="tDeadline">Application deadline</label>
+            <input type="date" id="tDeadline" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Publish tender</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- MY TENDERS -->
+    <section class="main-section hidden" id="section-tenders">
+      <div class="main-head"><div><span class="eyebrow">Everything you've listed</span><h2>My tenders</h2></div></div>
+      <div id="tendersList"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- APPLICATIONS MODAL (list of applicants for one tender) -->
+<div class="modal-overlay hidden" id="applicantsOverlay">
+  <div class="modal" style="max-width:720px;">
+    <div class="modal-head">
+      <div>
+        <span class="eyebrow" id="applicantsTenderRef"></span>
+        <h3 id="applicantsTenderTitle" style="font-size:19px;"></h3>
+      </div>
+      <button class="modal-close" data-close="applicantsOverlay">&times;</button>
+    </div>
+    <div id="applicantsBody"></div>
+  </div>
+</div>
+
+<!-- REVIEW MODAL (pitch + documents + verify) -->
+<div class="modal-overlay hidden" id="reviewOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <span class="eyebrow" id="reviewRef"></span>
+        <h3 id="reviewCorpName" style="font-size:19px;"></h3>
+      </div>
+      <button class="modal-close" data-close="reviewOverlay">&times;</button>
+    </div>
+    <div>
+      <label>Pitch</label>
+      <p id="reviewPitch" style="font-size:13.5px; color:var(--ink-soft); background:var(--paper); border:1px solid var(--paper-line); border-radius:6px; padding:14px; margin-bottom:18px;"></p>
+
+      <label>Supporting documents — check each after review</label>
+      <div id="reviewDocs" style="margin-bottom:20px;"></div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn btn-shortlist btn-sm" id="btnShortlist">Shortlist</button>
+        <button class="btn btn-verify btn-sm" id="btnVerify">Verify &amp; approve</button>
+        <button class="btn btn-reject btn-sm" id="btnReject">Reject</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/store.js"></script>
+<script src="/company.js"></script>
+</body>
+</html>
