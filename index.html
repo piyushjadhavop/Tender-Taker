@@ -7,37 +7,39 @@
 <link href="assets/logo(TT)bg.png" rel="icon">
 <link rel="stylesheet" href="style.css">
 <style>
-  .hero{ max-width:1200px; margin:0 auto; padding: 64px 28px 80px; display:grid; grid-template-columns: 1.15fr 1fr; gap:56px; align-items:start; }
-  .hero-left .eyebrow{ margin-bottom:14px; }
-  .hero-left h1{ font-size: 44px; line-height:1.08; margin-bottom:18px; }
-  .hero-left h1 em{ font-style:italic; color: var(--brass-dark); }
-  .hero-left p.lede{ font-size:16px; color: var(--ink-soft); max-width:480px; margin-bottom:34px; }
-  .steps{ display:flex; flex-direction:column; gap:20px; max-width: 480px; }
-  .step{ display:flex; gap:16px; align-items:flex-start; }
-  .step-num{ font-family: var(--font-mono); font-size:12px; color: var(--brass-dark); border:1px solid var(--brass); border-radius:50%; width:30px; height:30px; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:2px; }
-  .step h4{ font-size:15px; margin-bottom:3px; }
-  .step p{ font-size:13px; color: var(--slate); margin:0; }
+  .hero{ max-width:1200px; margin:0 auto; padding: 72px 28px 86px; display:grid; grid-template-columns: 1.1fr 0.9fr; gap:52px; align-items:start; background: linear-gradient(135deg, rgba(19,25,33,0.95) 0%, rgba(19,25,33,0.72) 100%); border-radius: 32px; box-shadow: 0 28px 70px rgba(17,24,39,0.18); }
+  .hero-left .eyebrow{ margin-bottom:18px; display:inline-flex; align-items:center; gap:10px; font-family: var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.18em; color:#FFD388; }
+  .hero-left h1{ font-size: 54px; line-height:1.02; margin-bottom:20px; color: #ffffff; }
+  .hero-left h1 em{ font-style:normal; font-weight:800; color: var(--yellow); }
+  .hero-left p.lede{ font-size:17px; color: rgba(255,255,255,0.78); max-width:520px; margin-bottom:36px; }
+  .steps{ display:grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap:18px; margin-top:16px; }
+  .step{ background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 22px; padding: 18px 18px 16px; display:flex; gap:16px; align-items:flex-start; }
+  .step-num{ font-family: var(--font-mono); font-size:12px; color: var(--surface); background: rgba(255,153,0,0.12); border-radius:50%; width:34px; height:34px; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:4px; }
+  .step h4{ font-size:15px; margin-bottom:4px; color: var(--surface); }
+  .step p{ font-size:13px; color: rgba(255,255,255,0.75); margin:0; }
 
-  .auth-card{ padding: 30px 32px 32px; }
-  .role-pills{ display:flex; gap:8px; margin-bottom: 22px; }
+  .auth-card{ padding: 34px 34px 34px; background: var(--surface); border-radius: 26px; border: 1px solid var(--surface-border); }
+  .role-pills{ display:flex; gap:10px; margin-bottom: 24px; }
   .role-pill{
-    flex:1; text-align:center; padding: 12px 8px; border:1.5px solid var(--paper-line);
-    border-radius: var(--radius-sm); font-size:13px; font-weight:600; color: var(--slate);
-    background: var(--paper);
+    flex:1; text-align:center; padding: 14px 10px; border:1.5px solid var(--surface-border);
+    border-radius: 999px; font-size:13px; font-weight:700; color: var(--ink-soft);
+    background: var(--surface);
+    transition: all .18s ease;
   }
-  .role-pill .sub{ display:block; font-weight:400; font-size:11px; margin-top:2px; }
-  .role-pill.active{ border-color: var(--brass); background: var(--paper-raised); color: var(--ink); box-shadow: 0 0 0 1px var(--brass) inset; }
-  .tabs{ display:flex; border-bottom:1px solid var(--paper-line); margin-bottom:22px; }
-  .tab{ padding:10px 4px; margin-right:22px; font-size:14px; font-weight:600; color: var(--slate); border-bottom:2px solid transparent; background:none; border-top:none; border-left:none; border-right:none; }
-  .tab.active{ color: var(--ink); border-bottom-color: var(--brass); }
-  .demo-note{ font-size:11.5px; color: var(--slate); background: var(--paper); border:1px solid var(--paper-line); padding:10px 12px; border-radius: var(--radius-sm); margin-top:16px; }
-  .demo-note b{ color: var(--ink-soft); font-family: var(--font-mono); }
-  .err{ font-size:12.5px; color: var(--rejected); margin-top: -6px; margin-bottom:14px; display:none; }
-  footer.site{ text-align:center; padding: 24px 0 40px; font-size:11.5px; color: var(--slate); font-family: var(--font-mono); letter-spacing:.06em; text-transform:uppercase; }
+  .role-pill .sub{ display:block; font-weight:500; font-size:11px; margin-top:4px; color: var(--slate); }
+  .role-pill.active{ border-color: var(--yellow); background: rgba(255,153,0,0.09); color: var(--navy); box-shadow: inset 0 0 0 1px rgba(255,153,0,0.16); }
+  .tabs{ display:flex; border-bottom:1px solid var(--surface-border); margin-bottom:22px; }
+  .tab{ padding:12px 4px; margin-right:20px; font-size:15px; font-weight:700; color: var(--ink-soft); border-bottom:3px solid transparent; background:none; }
+  .tab.active{ color: var(--navy); border-bottom-color: var(--yellow); }
+  .demo-note{ font-size:12px; color: var(--ink-soft); background: var(--surface-muted); border:1px solid var(--surface-border); padding:12px 14px; border-radius: var(--radius-sm); margin-top:20px; }
+  .demo-note b{ color: var(--ink); font-family: var(--font-mono); }
+  .err{ font-size:13px; color: var(--danger); margin-top: -6px; margin-bottom:14px; display:none; }
+  footer.site{ text-align:center; padding: 28px 0 42px; font-size:12px; color: var(--ink-soft); font-family: var(--font-mono); letter-spacing:.08em; text-transform:uppercase; }
 
   @media (max-width: 900px){
     .hero{ grid-template-columns: 1fr; padding-top: 40px; }
-    .hero-left h1{ font-size:32px; }
+    .hero-left h1{ font-size:40px; }
+    .steps{ grid-template-columns: 1fr; }
   }
 </style>
 </head>
